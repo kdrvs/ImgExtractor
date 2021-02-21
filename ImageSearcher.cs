@@ -9,123 +9,122 @@ namespace ImgExtractor
     public class ImageSearcher
     {
 
-        private string targetPNG = "Png";
-        private string targetJPG = "Jpg";
-
-        public List<string> Png { get; set; } = new List<string>();
-        public List<string> Jpg { get; set; } = new List<string>();
-
-        private List<string> PngSignatures = new List<string>()
-                        {
-                            "89", "50", "4E", "47"  // png Signature
-                        };
-
-        private List<string> JpgSignatures = new List<string>()
-                        {
-                            "FF", "D8", "FF", "DB"  // jpg Signature
-                        };
-
-        public ImageSearcher(List<string> paths)
+        private string hash;
+        private List<string> TypeFilesList = new List<string>();
+        private FileType Type;
+       
+        public ImageSearcher(List<string> pathList, FileType type )
         {
-            imageSort(paths);
+            Type = type;
+            getTypePathsList(pathList);
+            hash = (type.GetHashCode() + (new Random()).Next(1, 1000)).ToString();
         }
 
-        private void imageSort(List<string> paths)
+        private void getTypePathsList(List<string> paths)
         {
             foreach (string path in paths)
             {
-                if (validator(path, PngSignatures))
-                    Png.Add(path);
-                else if (validator(path, JpgSignatures))
-                    Jpg.Add(path);
+                if (validator(path, Type.Signatures))
+                    this.TypeFilesList.Add(path);
             }
-
+            if(this.TypeFilesList.Count > 0)
+                Console.WriteLine("Found of " + Type.FileExtension + " Files = "+ this.TypeFilesList.Count);
         }
+
 
         public void copyImages()
         {
-            if (!Directory.Exists(targetPNG))
-                Directory.CreateDirectory(targetPNG);
-            if (!Directory.Exists(targetJPG))
-                Directory.CreateDirectory(targetJPG);
-
-            var index = 0;
-            foreach (string _png in Png)
+            try
             {
-                File.Copy(_png, targetPNG + "/" + index.ToString() + ".png");
-                index++;
-                
-            }
+                if (this.TypeFilesList.Count > 0 && !Directory.Exists(Type.FileExtension))
+                     Directory.CreateDirectory(Type.FileExtension);
 
-            index = 0;
-            foreach (string _jpg in Jpg)
+                var index = 0;
+                foreach (string path in this.TypeFilesList)
+                {
+                    File.Copy(path, Type.FileExtension + "/" + hash + index.ToString() + "." + Type.FileExtension.ToLower());
+                    index++;
+
+                }
+            }
+            catch(Exception e)
             {
-                File.Copy(_jpg, targetJPG + "/" + index.ToString() + ".jpg");
-                index++;
+                Console.WriteLine(e.Message);
             }
-
+            
         }
 
-        public async Task<bool> copyImagesAsync()
+        public void moveImages()
         {
-            if (!Directory.Exists(targetPNG))
-                Directory.CreateDirectory(targetPNG);
-            if (!Directory.Exists(targetJPG))
-                Directory.CreateDirectory(targetJPG);
-
-            var index = 0;
-            foreach (string _png in Png)
+            try
             {
-                using (Stream source = File.Open(_png, FileMode.Open))
-                {
-                    using (Stream target = File.Create(targetPNG + "/" + index.ToString() + ".png"))
-                    {
-                        await source.CopyToAsync(target);
-                        index++;
-                    }
-                }
-                
-            }
+                if (this.TypeFilesList.Count > 0 && !Directory.Exists(Type.FileExtension))
+                    Directory.CreateDirectory(Type.FileExtension);
 
-            index = 0;
-            foreach (string _jpg in Jpg)
+                var index = 0;
+                foreach (string path in this.TypeFilesList)
+                {
+                    File.Move(path, Type.FileExtension + "/" + hash + index.ToString() + "." + Type.FileExtension.ToLower());
+                    index++;
+
+                }
+            }
+            catch(Exception e)
             {
-                using (Stream source = File.Open(_jpg, FileMode.OpenOrCreate))
-                {
-                    using (Stream target = File.Create(targetJPG + "/" + index.ToString() + ".jpg"))
-                    {
-                        await source.CopyToAsync(target);
-                        index++;
-                    }
-                }
-       
+                Console.WriteLine(e.Message);
             }
+            
+        }
 
-            return true;
+        public async Task copyImagesAsync()
+        {
+            try
+            {
+                if (this.TypeFilesList.Count > 0 && !Directory.Exists(Type.FileExtension))
+                    Directory.CreateDirectory(Type.FileExtension);
+
+                var index = 0;
+                foreach (string path in this.TypeFilesList)
+                {
+                    using (Stream source = File.Open(path, FileMode.Open))
+                    {
+                        using (Stream target = File.Create(Type.FileExtension + "/" + hash + index.ToString() + "." + Type.FileExtension.ToLower()))
+                        {
+                            await source.CopyToAsync(target);
+                            index++;
+                        }
+                    }
+
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+           
+
+            
 
         }
 
-        private bool validator(string path, List<string> signatures)
+        private bool validator(string path, string[] signatures)
         {
             if (!File.Exists(path))
                 return false;
 
-            var fileHeader = new List<string>();
+            string[] fileHeader = new string[signatures.Length];
             using FileStream stream = File.OpenRead(path);
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < signatures.Length; i++)
             {
-                fileHeader.Add(stream.ReadByte().ToString("X2"));
+                fileHeader[i] = (stream.ReadByte().ToString("X2"));
             }
 
-            if (fileHeader.Intersect(signatures).Any())
-                return true;
+            if (Enumerable.SequenceEqual(fileHeader, signatures))
+                return true;                
 
             return false;
 
         }
-
-
-
 
 
     }

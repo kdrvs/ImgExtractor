@@ -101,9 +101,6 @@ namespace ImgExtractor
             {
                 Console.WriteLine(e.Message);
             }
-           
-
-            
 
         }
 
@@ -121,20 +118,12 @@ namespace ImgExtractor
                 for(int i = 0; i < fileHeader.Length; i++)
                 {
                     fileHeader[i] = buffer[i].ToString("X2");
-                }
-                /*for (int i = Type.StartingByte; i < signatures.Length + Type.StartingByte; i++)
-                {
-                    Console.WriteLine(stream.ReadByte().ToString("X2")); //WTF??
-                    fileHeader[i] = (stream.ReadByte().ToString("X2"));
-                }*/
+                }              
                 
-                
-
                 if (Enumerable.SequenceEqual(fileHeader, signatures))
                     return true;
             }
                          
-
             return false;
 
         }

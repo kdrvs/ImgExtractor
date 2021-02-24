@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ImgExtractor
 {
-    public class ImageSearcher
+    public class FileSearcher
     {
 
         private string hash;
         private List<string> TypeFilesList = new List<string>();
         private FileType Type;
        
-        public ImageSearcher(List<string> pathList, FileType type )
+        public FileSearcher(List<string> pathList, FileType type )
         {
             Type = type;
             getTypePathsList(pathList);
@@ -24,7 +24,7 @@ namespace ImgExtractor
         {
             foreach (string path in paths)
             {
-                if (validator(path, Type.Signatures))
+                if (validator(path, Type.Signatures, Type.Offset))
                     this.TypeFilesList.Add(path);
             }
             if(this.TypeFilesList.Count > 0)
@@ -107,20 +107,33 @@ namespace ImgExtractor
 
         }
 
-        private bool validator(string path, string[] signatures)
+        private bool validator(string path, string[] signatures, int offset)
         {
             if (!File.Exists(path))
                 return false;
 
+            byte[] buffer = new byte[signatures.Length];
             string[] fileHeader = new string[signatures.Length];
-            using FileStream stream = File.OpenRead(path);
-            for (int i = 0; i < signatures.Length; i++)
+            using (FileStream stream = File.OpenRead(path))
             {
-                fileHeader[i] = (stream.ReadByte().ToString("X2"));
-            }
+                stream.Seek(offset, SeekOrigin.Begin);
+                stream.Read(buffer, 0, buffer.Length);
+                for(int i = 0; i < fileHeader.Length; i++)
+                {
+                    fileHeader[i] = buffer[i].ToString("X2");
+                }
+                /*for (int i = Type.StartingByte; i < signatures.Length + Type.StartingByte; i++)
+                {
+                    Console.WriteLine(stream.ReadByte().ToString("X2")); //WTF??
+                    fileHeader[i] = (stream.ReadByte().ToString("X2"));
+                }*/
+                
+                
 
-            if (Enumerable.SequenceEqual(fileHeader, signatures))
-                return true;                
+                if (Enumerable.SequenceEqual(fileHeader, signatures))
+                    return true;
+            }
+                         
 
             return false;
 

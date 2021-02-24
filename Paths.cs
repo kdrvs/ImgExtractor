@@ -13,7 +13,6 @@ namespace ImgExtractor
             get;
             private set;
         }
-    
 
         public Paths(string path)
         {
@@ -25,11 +24,12 @@ namespace ImgExtractor
             try
             {
                 FilePathsList = Directory.GetFiles(path, "*", SearchOption.AllDirectories).ToList();
+
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                FilePathsList = new List<string>();
+                
             }
             
         }

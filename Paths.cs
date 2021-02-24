@@ -24,7 +24,6 @@ namespace ImgExtractor
             try
             {
                 FilePathsList = Directory.GetFiles(path, "*", SearchOption.AllDirectories).ToList();
-
             }
             catch (Exception e)
             {

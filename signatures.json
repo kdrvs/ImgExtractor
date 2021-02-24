@@ -1,0 +1,112 @@
+[
+  {
+    "Offset": 0,
+    "FileExtension": "png",
+    "Signatures": [ "89", "50", "4E", "47" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "jpg",
+    "Signatures": [ "FF", "D8", "FF", "E0" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "jpg",
+    "Signatures": [ "FF", "D8", "FF", "DB" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "jpeg",
+    "Signatures": [ "FF", "D8", "FF", "E1" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "gif",
+    "Signatures": [ "47", "49", "46", "38", "37", "61" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "gif",
+    "Signatures": [ "47", "49", "46", "38", "39", "61" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "tif",
+    "Signatures": [ "49", "49", "2A", "00" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "tiff",
+    "Signatures": [ "4D", "4D", "00", "2A" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "zip",
+    "Signatures": [ "50", "4B", "03", "04" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "pdf",
+    "Signatures": [ "25", "50", "44", "46" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "7z",
+    "Signatures": [ "37", "7A", "BC", "AF", "27", "1C" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "webm",
+    "Signatures": [ "1A", "45", "DF", "A3" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "rtf",
+    "Signatures": [ "7B", "5C", "72", "74", "66", "31" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "mpg",
+    "Signatures": [ "00", "00", "01", "BA" ]
+  },
+  {
+    "Offset": 0,
+    "FileExtension": "mpeg",
+    "Signatures": [ "00", "00", "01", "B3" ]
+  },
+  {
+    "Offset": 4,
+    "FileExtension": "m4a",
+    "Signatures": [ "66", "74", "79", "70", "4D", "34", "41", "20" ]
+  },
+  {
+    "Offset": 4,
+    "FileExtension": "flv",
+    "Signatures": [ "66", "74", "79", "70", "4D", "34", "56", "20" ]
+  },
+  {
+    "Offset": 4,
+    "FileExtension": "mp4",
+    "Signatures": [ "66", "74", "79", "70", "4D", "53", "4E", "56" ]
+  },
+  {
+    "Offset": 4,
+    "FileExtension": "mp4",
+    "Signatures": [ "66", "74", "79", "70", "69", "73", "6F", "6D" ]
+  },
+  {
+    "Offset": 4,
+    "FileExtension": "m4v",
+    "Signatures": [ "66", "74", "79", "70", "6D", "70", "34", "32" ]
+  },
+  {
+    "Offset": 4,
+    "FileExtension": "mov",
+    "Signatures": [ "66", "74", "79", "70", "71", "74", "20", "20" ]
+  },
+  {
+    "Offset": 4,
+    "FileExtension": "mov",
+    "Signatures": [ "6D", "6F", "6F", "76" ]
+  }
+]

@@ -14,13 +14,14 @@ namespace ImgExtractor
             string path;
 
             Console.WriteLine("Insert a folder with files : ");
+
             path = Console.ReadLine();
 
             var dir = new Paths(path);
 
             await start(dir.FilePathsList);
-           
-            Console.WriteLine("Directory :" + Directory.GetCurrentDirectory().ToString());
+            
+            Console.WriteLine("Files saved to :" + Directory.GetCurrentDirectory().ToString());
 
         }
 
@@ -30,7 +31,10 @@ namespace ImgExtractor
             var map = new FileMapper(dirs, fileTypes);
             await map.searchFilesAsync();
             printMap(map.getAmountMap());
+            
             await map.copyAsync();
+
+            //map.saveLog();
         }
 
         public static void printMap (Dictionary<string, int> map)

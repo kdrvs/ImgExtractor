@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
@@ -10,11 +11,16 @@ namespace ImgExtractor
     class FileMapper
     {
         private List<string> pathes;
-        public Dictionary<string, FileType> filesMap = new Dictionary<string, FileType>();
+        public ConcurrentDictionary<string, FileType> filesMap;
         private List<FileType> fileTypes;
+        private int countOFCopedFiles = 0;
+        private DateTime startTime = DateTime.Now;
+        private DateTime mapperWorked = DateTime.Now;
+        private DateTime totalTime = DateTime.Now;
 
         public FileMapper(List<string> pathes, List<FileType> fileTypes)
         {
+            this.filesMap = new ConcurrentDictionary<string, FileType>();
             this.pathes = pathes;
             this.fileTypes = fileTypes;
         }
@@ -48,16 +54,22 @@ namespace ImgExtractor
             }
             
             await Task.WhenAll(tasks);
+
+            this.mapperWorked = DateTime.Now;
+            this.totalTime = this.mapperWorked;
            
         }
 
         private async Task checkFile(string path)
         {
             var fileType = await getFileAsync(path);
-            if(fileType.FileExtension != "None")
-            {
-                this.filesMap.Add(path, fileType);
-            }
+            
+                if (fileType.FileExtension != "None")
+                {    
+                    this.filesMap.TryAdd(path, fileType);
+                    
+                }
+            
         }
 
         private async Task<FileType> getFileAsync(string path)
@@ -85,6 +97,7 @@ namespace ImgExtractor
                         }
                         if (Enumerable.SequenceEqual(fileHeader, fileType.Signatures))
                             return fileType;
+                        
                     }
                 }
                 
@@ -103,17 +116,22 @@ namespace ImgExtractor
             
             foreach(KeyValuePair<string, FileType> file in this.filesMap)
             {
-                tasks.Add(copyFileAsync(file));
+                tasks.Add(copyFileAsync(file, countOFCopedFiles));
+                countOFCopedFiles++;
             }
            
             await Task.WhenAll(tasks);
+
+            this.totalTime = DateTime.Now;
        
         }
 
-        private async Task copyFileAsync(KeyValuePair<string, FileType> file)
+        private async Task copyFileAsync(KeyValuePair<string, FileType> file, int count)
         {
             var sourcePath = file.Key;
-            var targetFileName = Math.Abs(file.GetHashCode());
+            var targetFileName = Math.Abs(file.Value.GetHashCode()).ToString()
+                + Math.Abs(startTime.GetHashCode()).ToString()
+                + count.ToString();
             var targetDirectory = file.Value.FileExtension;
             string targetPath;
 
@@ -121,6 +139,7 @@ namespace ImgExtractor
             {
                 if (!Directory.Exists(targetDirectory))
                     Directory.CreateDirectory(targetDirectory);
+
                 targetPath = targetDirectory + '/' + targetFileName + '.' + file.Value.FileExtension.ToLower();
                 using (FileStream source = new FileStream(sourcePath, FileMode.Open))
                 {
@@ -136,7 +155,30 @@ namespace ImgExtractor
             }
         }
 
-       
+        public void saveLog()
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter("Log.txt", true))
+                {
+                    writer.WriteLine("\n" + "***");
+                    writer.WriteLine(DateTime.Now.ToString("G"));
+                    var map = getAmountMap();
+                    foreach (KeyValuePair<string, int> m in map)
+                    {
+                        writer.WriteLine("Found of {0} : {1} ", m.Value, m.Key);
+                    }
+
+                    writer.WriteLine("Mapper worked : {0} sec", (this.mapperWorked - this.startTime).TotalSeconds.ToString());
+
+                    writer.WriteLine("Total time : {0} sec", (this.totalTime - this.startTime).TotalSeconds.ToString());
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
        
     }
 }

@@ -16,26 +16,37 @@ namespace ImgExtractor
             Console.WriteLine("Insert a folder with files : ");
 
             path = Console.ReadLine();
-
-            var dir = new Paths(path);
-
-            await start(dir.FilePathsList);
             
-            Console.WriteLine("Files saved to :" + Directory.GetCurrentDirectory().ToString());
+            try
+            {
+                var dir = new Paths(path);
+                await start(dir.FilePathsList);
+                Console.WriteLine("Files saved to :" + Directory.GetCurrentDirectory().ToString());
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
         }
 
         public static async Task start(List<string> dirs)
         {
-            List<FileType> fileTypes = await Signatures.getTypeListAsync();
-            var map = new FileMapper(dirs, fileTypes);
-            await map.searchFilesAsync();
-            printMap(map.getAmountMap());
-            
-            await map.copyAsync();
-
-            //map.saveLog();
+            try
+            {
+                List<FileType> fileTypes = await Signatures.getTypeListAsync();
+                var map = new FileMapper(dirs, fileTypes);
+                await map.searchFilesAsync();
+                printMap(map.getAmountMap());
+                await map.copyAsync();
+                //map.saveLog();
+            }   
+            catch(Exception E)
+            {
+                Console.WriteLine(E.Message);
+            } 
         }
+            
 
         public static void printMap (Dictionary<string, int> map)
             {

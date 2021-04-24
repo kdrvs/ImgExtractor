@@ -46,15 +46,8 @@ namespace ImgExtractor
 
         public async Task searchFilesAsync()
         {
-            var tasks = new List<Task>();
-           
-            foreach (string path in pathes)
-            {
-                tasks.Add(checkFile(path));
-            }
+            await Task.WhenAll(pathes.Select(p => checkFile(p)));
             
-            await Task.WhenAll(tasks);
-
             this.mapperWorked = DateTime.Now;
             this.totalTime = this.mapperWorked;
            
@@ -112,28 +105,22 @@ namespace ImgExtractor
 
         public async Task copyAsync()
         {
-            var tasks = new List<Task>();
-            
-            foreach(KeyValuePair<string, FileType> file in this.filesMap)
-            {
-                tasks.Add(copyFileAsync(file, countOFCopedFiles));
-                countOFCopedFiles++;
-            }
-           
-            await Task.WhenAll(tasks);
+            await Task.WhenAll(this.filesMap.Select(f => copyFileAsync(f)));
 
             this.totalTime = DateTime.Now;
        
         }
 
-        private async Task copyFileAsync(KeyValuePair<string, FileType> file, int count)
+        private async Task copyFileAsync(KeyValuePair<string, FileType> file)
         {
             var sourcePath = file.Key;
             var targetFileName = Math.Abs(file.Value.GetHashCode()).ToString()
                 + Math.Abs(startTime.GetHashCode()).ToString()
-                + count.ToString();
+                + this.countOFCopedFiles.ToString();
             var targetDirectory = file.Value.FileExtension;
             string targetPath;
+
+            this.countOFCopedFiles ++;
 
             try
             {

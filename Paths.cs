@@ -21,6 +21,9 @@ namespace ImgExtractor
 
         private void extract(string path)
         {
+            if(!Directory.Exists(path))
+                throw new DirectoryNotFoundException();
+
             try
             {
                 FilePathsList = Directory.GetFiles(path, "*", SearchOption.AllDirectories).ToList();

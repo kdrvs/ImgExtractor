@@ -13,16 +13,28 @@ namespace ImgExtractor
         private List<string> pathes;
         public ConcurrentDictionary<string, FileType> filesMap;
         private List<FileType> fileTypes;
+
+        private string targetPath;
         private int countOFCopedFiles = 0;
         private DateTime startTime = DateTime.Now;
         private DateTime mapperWorked = DateTime.Now;
         private DateTime totalTime = DateTime.Now;
 
-        public FileMapper(List<string> pathes, List<FileType> fileTypes)
+        public FileMapper(List<string> pathes, List<FileType> fileTypes, string _targetPath)
         {
             this.filesMap = new ConcurrentDictionary<string, FileType>();
             this.pathes = pathes;
             this.fileTypes = fileTypes;
+            this.targetPath = _targetPath;
+            createTargetFolder(_targetPath);
+        }
+
+        private void createTargetFolder(string path)
+        {
+            if(!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
         }
 
         public Dictionary<string, int> getAmountMap()
@@ -117,7 +129,7 @@ namespace ImgExtractor
             var targetFileName = Math.Abs(file.Value.GetHashCode()).ToString()
                 + Math.Abs(startTime.GetHashCode()).ToString()
                 + this.countOFCopedFiles.ToString();
-            var targetDirectory = file.Value.FileExtension;
+            var targetDirectory = this.targetPath + "/" + file.Value.FileExtension;
             string targetPath;
 
             this.countOFCopedFiles ++;

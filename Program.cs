@@ -11,17 +11,39 @@ namespace ImgExtractor
         static async Task Main(string[] args)
         {
 
-            string path;
+            string sourcePath = "";
+            string targetPath = "files";
+            
+            if(args == null || args.Length < 1)
+            {
+                Console.WriteLine("Insert a folder with files : ");
+                sourcePath = Console.ReadLine().Replace(" ", "").Replace("\"","").Replace("\'", "");
+            }
+            else
+            {
+                try
+                {
+                    if(args[0] != null)
+                    sourcePath = args[0];
 
-            Console.WriteLine("Insert a folder with files : ");
+                    if(args.Length > 1)
+                        if(args[1] != null)
+                            targetPath = args[1].Replace(" ", "").Replace("\"","").Replace("\'", "") + "/" + targetPath;
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                
+                
+            }
 
-            path = Console.ReadLine();
             
             try
             {
-                var dir = new Paths(path);
-                await start(dir.FilePathsList);
-                Console.WriteLine("Files saved to :" + Directory.GetCurrentDirectory().ToString());
+                var dir = new Paths(sourcePath);
+                await start(dir.FilePathsList, targetPath);
+                Console.WriteLine("Files saved to :" + (new DirectoryInfo(targetPath)).FullName); //+ Directory.GetCurrentDirectory().ToString());
             }
             catch(Exception e)
             {
@@ -30,12 +52,12 @@ namespace ImgExtractor
 
         }
 
-        public static async Task start(List<string> dirs)
+        public static async Task start(List<string> dirs, string targetFolder)
         {
             try
             {
                 List<FileType> fileTypes = await Signatures.getTypeListAsync();
-                var map = new FileMapper(dirs, fileTypes);
+                var map = new FileMapper(dirs, fileTypes, targetFolder);
                 await map.searchFilesAsync();
                 printMap(map.getAmountMap());
                 await map.copyAsync();

@@ -43,7 +43,10 @@ namespace ImgExtractor
             {
                 var dir = new Paths(sourcePath);
                 await start(dir.FilePathsList, targetPath);
-                Console.WriteLine("Files saved to :" + (new DirectoryInfo(targetPath)).FullName); //+ Directory.GetCurrentDirectory().ToString());
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Files saved to :" + (new DirectoryInfo(targetPath)).FullName + "\n");
+                Console.ResetColor();
+                
             }
             catch(Exception e)
             {
@@ -74,7 +77,7 @@ namespace ImgExtractor
             {
                 foreach(KeyValuePair<string, int> sum in map)
                 {
-                    Console.WriteLine($"Found of {sum.Key} files: {sum.Value}");
+                    Console.WriteLine($"Found of {sum.Key}:\t{sum.Value}");
                 }
             }
 

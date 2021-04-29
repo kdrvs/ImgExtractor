@@ -130,7 +130,7 @@ namespace ImgExtractor
                 + Math.Abs(startTime.GetHashCode()).ToString()
                 + this.countOFCopedFiles.ToString();
             var targetDirectory = this.targetPath + "/" + file.Value.FileExtension;
-            string targetPath;
+            string _targetPath;
 
             this.countOFCopedFiles ++;
 
@@ -139,10 +139,10 @@ namespace ImgExtractor
                 if (!Directory.Exists(targetDirectory))
                     Directory.CreateDirectory(targetDirectory);
 
-                targetPath = targetDirectory + '/' + targetFileName + '.' + file.Value.FileExtension.ToLower();
+                _targetPath = targetDirectory + '/' + targetFileName + '.' + file.Value.FileExtension.ToLower();
                 using (FileStream source = new FileStream(sourcePath, FileMode.Open))
                 {
-                    using(FileStream target = new FileStream(targetPath, FileMode.OpenOrCreate))
+                    using(FileStream target = new FileStream(_targetPath, FileMode.OpenOrCreate))
                     {
                         await source.CopyToAsync(target);
                     }

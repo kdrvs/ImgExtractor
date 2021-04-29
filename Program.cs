@@ -44,7 +44,7 @@ namespace ImgExtractor
                 var dir = new Paths(sourcePath);
                 await start(dir.FilePathsList, targetPath);
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Files saved to :" + (new DirectoryInfo(targetPath)).FullName + "\n");
+                Console.WriteLine("Files saved to: " + (new DirectoryInfo(targetPath)).FullName + "\n");
                 Console.ResetColor();
                 
             }

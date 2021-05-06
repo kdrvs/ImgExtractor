@@ -1,0 +1,253 @@
+
+***
+30.04.2021 20:44:56
+Mapper worked : 0,0011401 sec
+Total time : 0,001143 sec
+
+***
+30.04.2021 20:46:50
+Mapper worked : 0,0010937 sec
+Total time : 0,0010963 sec
+
+***
+30.04.2021 20:51:25
+Mapper worked : 0,0009964 sec
+Total time : 0,0009988 sec
+
+***
+30.04.2021 20:52:13
+Mapper worked : 0,001076 sec
+Total time : 0,0010784 sec
+
+***
+30.04.2021 20:52:33
+Mapper worked : 0,0010214 sec
+Total time : 0,0010234 sec
+
+***
+30.04.2021 21:01:03
+Mapper worked : 0,001437 sec
+Total time : 0,0014397 sec
+
+***
+30.04.2021 21:05:14
+Mapper worked : 0,0015124 sec
+Total time : 0,0015159 sec
+
+***
+30.04.2021 21:05:36
+Mapper worked : 0,0010246 sec
+Total time : 0,0010272 sec
+
+***
+30.04.2021 21:07:56
+Mapper worked : 0,0016296 sec
+Total time : 0,0016333 sec
+
+***
+30.04.2021 21:34:27
+Found of 570 : png 
+Found of 17035 : jpg 
+Found of 2718 : jpeg 
+Found of 7 : gif 
+Found of 1 : tiff 
+Found of 6 : zip 
+Found of 8 : pdf 
+Found of 2 : m4a 
+Found of 8 : mp4 
+Found of 114 : m4v 
+Found of 125 : mov 
+Mapper worked : 0,0009976 sec
+Total time : 0,0009994 sec
+
+***
+30.04.2021 21:45:50
+Found of 568 : png 
+Found of 16971 : jpg 
+Found of 2712 : jpeg 
+Found of 7 : gif 
+Found of 1 : tiff 
+Found of 6 : zip 
+Found of 8 : pdf 
+Found of 2 : m4a 
+Found of 8 : mp4 
+Found of 112 : m4v 
+Found of 123 : mov 
+Mapper worked : 0,0009802 sec
+Total time : 0,0009822 sec
+
+***
+30.04.2021 21:47:26
+Found of 567 : png 
+Found of 16948 : jpg 
+Found of 2699 : jpeg 
+Found of 7 : gif 
+Found of 1 : tiff 
+Found of 6 : zip 
+Found of 8 : pdf 
+Found of 2 : m4a 
+Found of 8 : mp4 
+Found of 112 : m4v 
+Found of 123 : mov 
+Mapper worked : 0,0010871 sec
+Total time : 0,0010904 sec
+
+***
+30.04.2021 21:49:25
+Found of 549 : png 
+Found of 16282 : jpg 
+Found of 2597 : jpeg 
+Found of 7 : gif 
+Found of 1 : tiff 
+Found of 6 : zip 
+Found of 7 : pdf 
+Found of 2 : m4a 
+Found of 8 : mp4 
+Found of 110 : m4v 
+Found of 119 : mov 
+Mapper worked : 0,0010135 sec
+Total time : 0,0010161 sec
+
+***
+30.04.2021 21:53:08
+Mapper worked : 0,0009951 sec
+Total time : 0,0009974 sec
+
+***
+30.04.2021 21:53:21
+Mapper worked : 0,0010096 sec
+Total time : 0,0010116 sec
+
+***
+04.05.2021 21:37:07
+Found of 587 : png 
+Found of 17498 : jpg 
+Found of 2778 : jpeg 
+Found of 7 : gif 
+Found of 1 : tiff 
+Found of 6 : zip 
+Found of 8 : pdf 
+Found of 2 : m4a 
+Found of 9 : mp4 
+Found of 115 : m4v 
+Found of 126 : mov 
+Mapper worked : 30,4421501 sec
+Total time : 30,4421501 sec
+
+***
+06.05.2021 15:30:50
+Found of 587 : png 
+Found of 17498 : jpg 
+Found of 2778 : jpeg 
+Found of 7 : gif 
+Found of 1 : tiff 
+Found of 6 : zip 
+Found of 8 : pdf 
+Found of 2 : m4a 
+Found of 9 : mp4 
+Found of 115 : m4v 
+Found of 126 : mov 
+Mapper worked : 26,3638529 sec
+Total time : 142,7145639 sec
+
+***
+06.05.2021 15:33:05
+Found of 2 : zip 
+Mapper worked : 0,0258348 sec
+Total time : 0,0467596 sec
+
+***
+06.05.2021 15:33:44
+Found of 2 : zip 
+Mapper worked : 0,0132699 sec
+Total time : 0,0324708 sec
+
+***
+06.05.2021 15:34:44
+Found of 6 : zip 
+Mapper worked : 0,010337 sec
+Total time : 0,0407757 sec
+
+***
+06.05.2021 15:35:08
+Found of 6 : zip 
+Mapper worked : 0,0102044 sec
+Total time : 0,0303893 sec
+
+***
+06.05.2021 15:35:26
+Found of 6 : zip 
+Mapper worked : 0,0129649 sec
+Total time : 0,0714321 sec
+
+***
+06.05.2021 15:35:41
+Found of 6 : zip 
+Mapper worked : 0,0097951 sec
+Total time : 0,0421903 sec
+
+***
+06.05.2021 15:36:18
+Found of 6 : zip 
+Mapper worked : 0,0091697 sec
+Total time : 0,0377581 sec
+
+***
+06.05.2021 15:36:43
+Found of 6 : zip 
+Mapper worked : 0,0190979 sec
+Total time : 0,0385732 sec
+
+***
+06.05.2021 15:45:08
+Found of 587 : png 
+Found of 17499 : jpg 
+Found of 2778 : jpeg 
+Found of 7 : gif 
+Found of 1 : tiff 
+Found of 7 : zip 
+Found of 8 : pdf 
+Found of 2 : m4a 
+Found of 9 : mp4 
+Found of 115 : m4v 
+Found of 126 : mov 
+Mapper worked : 128,4807509 sec
+Total time : 222,2471642 sec
+
+***
+06.05.2021 15:48:39
+Found of 587 : png 
+Found of 17499 : jpg 
+Found of 2778 : jpeg 
+Found of 7 : gif 
+Found of 1 : tiff 
+Found of 7 : zip 
+Found of 8 : pdf 
+Found of 2 : m4a 
+Found of 9 : mp4 
+Found of 115 : m4v 
+Found of 126 : mov 
+Mapper worked : 82,0897008 sec
+Total time : 178,1667593 sec
+
+***
+06.05.2021 15:50:58
+Found of 587 : png 
+Found of 17498 : jpg 
+Found of 2778 : jpeg 
+Found of 7 : gif 
+Found of 1 : tiff 
+Found of 6 : zip 
+Found of 8 : pdf 
+Found of 2 : m4a 
+Found of 9 : mp4 
+Found of 115 : m4v 
+Found of 126 : mov 
+Mapper worked : 25,808401 sec
+Total time : 117,5214544 sec
+
+***
+06.05.2021 15:51:57
+Found of 6 : zip 
+Mapper worked : 0,0708056 sec
+Total time : 0,0958172 sec
